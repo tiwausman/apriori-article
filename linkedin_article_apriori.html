@@ -1,0 +1,437 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+
+.article{max-width:680px;margin:0 auto}
+
+/* ── COVER ── */
+.cover{background:#0A2342;border-radius:12px;padding:0;overflow:hidden;margin-bottom:0;position:relative}
+.cover-inner{padding:44px 44px 36px}
+.cover-tag{display:inline-block;background:rgba(229,160,32,0.18);color:#E8A020;font-size:11px;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:20px;border:0.5px solid rgba(229,160,32,0.3)}
+.cover-title{font-size:28px;font-weight:500;color:#fff;line-height:1.25;margin-bottom:10px}
+.cover-sub{font-size:14px;color:#8AADD4;line-height:1.6;margin-bottom:28px}
+.cover-meta{display:flex;align-items:center;gap:14px;border-top:0.5px solid rgba(255,255,255,0.1);padding-top:20px}
+.avatar{width:40px;height:40px;border-radius:50%;background:#1D9E75;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;color:#fff;flex-shrink:0}
+.meta-text{flex:1}
+.meta-name{font-size:13px;font-weight:500;color:#fff}
+.meta-detail{font-size:11px;color:#6B8BAA;margin-top:2px}
+.cover-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.badge{font-size:10px;padding:3px 10px;border-radius:12px;font-weight:500}
+.b-teal{background:rgba(29,158,117,0.18);color:#5DCAA5;border:0.5px solid rgba(29,158,117,0.3)}
+.b-blue{background:rgba(56,138,221,0.18);color:#7BB4EC;border:0.5px solid rgba(56,138,221,0.3)}
+.b-gold{background:rgba(229,160,32,0.18);color:#E8A020;border:0.5px solid rgba(229,160,32,0.3)}
+
+.cover-visual{background:rgba(255,255,255,0.03);border-top:0.5px solid rgba(255,255,255,0.07);padding:18px 44px;display:flex;gap:20px;align-items:center}
+.stat-item{text-align:center;flex:1}
+.stat-num{font-size:20px;font-weight:500;color:#E8A020}
+.stat-label{font-size:10px;color:#6B8BAA;margin-top:3px;text-transform:uppercase;letter-spacing:0.5px}
+
+/* ── ARTICLE BODY ── */
+.body{background:var(--surface-2,#fff);border-radius:0 0 12px 12px;border:0.5px solid var(--border);border-top:none;padding:32px 36px}
+
+.section-divider{height:0.5px;background:var(--border);margin:28px 0}
+
+.lead{font-size:16px;color:var(--text-secondary);line-height:1.75;margin-bottom:20px;font-style:italic;border-left:3px solid #1D9E75;padding-left:14px}
+
+h2.ah{font-size:18px;font-weight:500;color:var(--text-primary);margin:28px 0 10px;display:flex;align-items:center;gap:8px}
+h2.ah .num{width:26px;height:26px;border-radius:6px;background:#0A2342;color:#E8A020;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:500;flex-shrink:0}
+
+h3.sh{font-size:14px;font-weight:500;color:var(--text-primary);margin:18px 0 8px}
+
+p.ap{font-size:14px;color:var(--text-secondary);line-height:1.75;margin-bottom:12px}
+
+.callout{background:var(--surface-1,#f7f6f3);border-left:3px solid #0A2342;border-radius:0 8px 8px 0;padding:14px 16px;margin:16px 0;font-size:13px;color:var(--text-secondary);line-height:1.65}
+.callout strong{color:var(--text-primary);font-weight:500}
+
+.obs-box{background:var(--surface-1,#f7f6f3);border-radius:8px;border:0.5px solid var(--border);padding:14px 16px;margin:14px 0}
+.obs-box .obs-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.8px;color:#1D9E75;margin-bottom:6px}
+.obs-box p{font-size:13px;color:var(--text-secondary);line-height:1.65;margin:0}
+
+ul.alist{margin:8px 0 14px 0;padding-left:0;list-style:none}
+ul.alist li{font-size:13px;color:var(--text-secondary);line-height:1.65;padding:3px 0 3px 18px;position:relative}
+ul.alist li::before{content:"→";position:absolute;left:0;color:#1D9E75;font-size:12px}
+
+/* Code blocks */
+.code-wrap{margin:14px 0;border-radius:8px;overflow:hidden;border:0.5px solid var(--border)}
+.code-header{background:#0D1117;display:flex;align-items:center;justify-content:space-between;padding:8px 14px}
+.code-lang{font-size:10px;color:#8B949E;font-weight:500;text-transform:uppercase;letter-spacing:0.5px}
+.code-copy{font-size:10px;color:#8B949E;cursor:pointer;padding:2px 8px;border-radius:4px;border:0.5px solid #30363D;background:transparent}
+.code-copy:hover{background:#21262D;color:#C9D1D9}
+pre.acode{background:#161B22;padding:16px;overflow-x:auto;margin:0}
+pre.acode code{font-family:var(--font-mono,'Courier New');font-size:12px;line-height:1.7;color:#E6EDF3}
+.kw{color:#FF7B72}
+.fn{color:#D2A8FF}
+.str{color:#A5D6FF}
+.cm{color:#8B949E;font-style:italic}
+.num-c{color:#79C0FF}
+.var{color:#FFA657}
+.op{color:#E6EDF3}
+.gr{color:#7EE787}
+
+/* Metric cards */
+.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
+.metric-card{background:var(--surface-1,#f7f6f3);border:0.5px solid var(--border);border-radius:8px;padding:12px 14px;text-align:center}
+.metric-val{font-size:20px;font-weight:500;color:#0A2342}
+.metric-label{font-size:11px;color:var(--text-muted);margin-top:3px}
+.metric-def{font-size:11px;color:var(--text-secondary);margin-top:6px;line-height:1.5}
+
+.rule-card{background:#0A2342;border-radius:8px;padding:14px 16px;margin:10px 0}
+.rule-text{font-size:13px;color:#8AADD4;line-height:1.65}
+.rule-text strong{color:#E8A020;font-weight:500}
+
+.insights{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.insight{background:var(--surface-1,#f7f6f3);border:0.5px solid var(--border);border-radius:8px;padding:12px}
+.insight .ins-title{font-size:12px;font-weight:500;color:var(--text-primary);margin-bottom:4px}
+.insight .ins-body{font-size:11px;color:var(--text-secondary);line-height:1.55}
+
+/* CTA footer */
+.cta-footer{background:#0A2342;border-radius:8px;padding:18px 20px;margin-top:24px;display:flex;align-items:center;gap:16px}
+.cta-text{flex:1}
+.cta-title{font-size:14px;font-weight:500;color:#fff;margin-bottom:4px}
+.cta-sub{font-size:12px;color:#6B8BAA}
+.cta-btn{font-size:12px;padding:8px 16px;border-radius:6px;background:#E8A020;color:#0A2342;font-weight:500;border:none;cursor:pointer;flex-shrink:0}
+
+.tags-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
+.tag{font-size:11px;color:#185FA5;background:var(--bg-accent,#E6F1FB);padding:3px 10px;border-radius:12px}
+</style>
+
+<div class="article">
+
+<!-- ══ COVER ══════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-inner">
+    <div class="cover-tag">LinkedIn Article · Data Science</div>
+    <div class="cover-title">Market Basket Analysis with<br>the Apriori Algorithm</div>
+    <div class="cover-sub">A complete walkthrough of Association Rule Mining on the UCI Online Retail Dataset — from messy raw data to actionable product recommendations using Python and mlxtend.</div>
+    <div class="cover-badges">
+      <span class="badge b-teal">Python</span>
+      <span class="badge b-blue">Machine Learning</span>
+      <span class="badge b-gold">Data Mining</span>
+      <span class="badge b-teal">mlxtend</span>
+      <span class="badge b-blue">Pandas</span>
+      <span class="badge b-gold">Market Basket Analysis</span>
+    </div>
+    <div class="cover-meta">
+      <div class="avatar">TU</div>
+      <div class="meta-text">
+        <div class="meta-name">Dr. Tiwalade Modupe Usman</div>
+        <div class="meta-detail">Researcher · Artificial Intelligence & Machine Learning</div>
+      </div>
+    </div>
+  </div>
+  <div class="cover-visual">
+    <div class="stat-item"><div class="stat-num">541,909</div><div class="stat-label">Raw transactions</div></div>
+    <div class="stat-item"><div class="stat-num">525,462</div><div class="stat-label">After cleaning</div></div>
+    <div class="stat-item"><div class="stat-num">86.9×</div><div class="stat-label">Top lift score</div></div>
+    <div class="stat-item"><div class="stat-num">67%</div><div class="stat-label">Peak confidence</div></div>
+  </div>
+</div>
+
+<!-- ══ BODY ═══════════════════════════════════════ -->
+<div class="body">
+
+<p class="lead">Have you ever wondered how Amazon knows what to suggest next, or why supermarkets place certain products next to each other? The answer is Market Basket Analysis — and the engine behind it is the Apriori algorithm.</p>
+
+<!-- ─── SECTION 1 ─── -->
+<h2 class="ah"><span class="num">1</span>The Dataset</h2>
+<p class="ap">We work with the <strong style="font-weight:500">UCI Online Retail Dataset</strong> — a real-world transactional dataset from a UK-based e-commerce retailer covering December 2010 to December 2011. Each row is one product in one invoice.</p>
+
+<div class="code-wrap">
+  <div class="code-header"><span class="code-lang">Python · Step 1 — Import libraries</span><button class="code-copy">Copy</button></div>
+  <pre class="acode"><code><span class="kw">import</span> pandas <span class="kw">as</span> <span class="var">pd</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> <span class="var">np</span>
+<span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> <span class="var">plt</span>
+<span class="kw">import</span> seaborn <span class="kw">as</span> <span class="var">sns</span>
+<span class="kw">from</span> mlxtend.frequent_patterns <span class="kw">import</span> apriori, association_rules
+
+<span class="cm"># Load the dataset</span>
+<span class="var">df</span> = <span class="var">pd</span>.<span class="fn">read_excel</span>(<span class="str">'Online Retail.xlsx'</span>)
+<span class="fn">display</span>(<span class="var">df</span>.<span class="fn">head</span>())
+<span class="fn">print</span>(<span class="var">df</span>.shape)      <span class="cm"># (541909, 8)</span></code></pre>
+</div>
+
+<div class="obs-box">
+  <div class="obs-label">Dataset structure</div>
+  <p>Each record contains: InvoiceNo, StockCode, Description, Quantity, InvoiceDate, UnitPrice, CustomerID, Country. One invoice can span many rows — one row per product purchased.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ─── SECTION 2 ─── -->
+<h2 class="ah"><span class="num">2</span>Data Cleaning</h2>
+<p class="ap">Real-world retail data is messy. Before running any algorithm, we must remove invalid records that would distort our association rules.</p>
+
+<div class="code-wrap">
+  <div class="code-header"><span class="code-lang">Python · Step 2 — Clean the data</span><button class="code-copy">Copy</button></div>
+  <pre class="acode"><code><span class="cm"># Remove rows with missing product descriptions</span>
+<span class="var">df</span> = <span class="var">df</span>.<span class="fn">dropna</span>(subset=[<span class="str">'Description'</span>])
+
+<span class="cm"># Drop CustomerID column (not needed for Apriori)</span>
+<span class="var">df</span> = <span class="var">df</span>.<span class="fn">drop</span>(columns=[<span class="str">'CustomerID'</span>])
+
+<span class="cm"># Remove cancelled transactions (InvoiceNo starts with 'C')</span>
+<span class="var">df</span> = <span class="var">df</span>[~<span class="var">df</span>[<span class="str">'InvoiceNo'</span>].<span class="fn">astype</span>(<span class="fn">str</span>).<span class="fn">str</span>.<span class="fn">startswith</span>(<span class="str">'C'</span>)]
+
+<span class="cm"># Remove returns and invalid quantities</span>
+<span class="var">df</span> = <span class="var">df</span>[<span class="var">df</span>[<span class="str">'Quantity'</span>] > <span class="num-c">0</span>]
+
+<span class="cm"># Drop duplicates</span>
+<span class="var">df</span>.<span class="fn">drop_duplicates</span>(inplace=<span class="kw">True</span>)
+
+<span class="fn">print</span>(<span class="var">df</span>.shape)  <span class="cm"># (525462, 7)  ← 16,447 records removed</span></code></pre>
+</div>
+
+<div class="callout"><strong>Why keep rows with missing CustomerID?</strong> Dropping them would remove ~135,000 valid product transactions. Since CustomerID is not required for Apriori (which groups by InvoiceNo), we keep these rows and only remove those missing a product Description.</div>
+
+<div class="section-divider"></div>
+
+<!-- ─── SECTION 3 ─── -->
+<h2 class="ah"><span class="num">3</span>Exploratory Data Analysis</h2>
+<p class="ap">Before mining rules, we explore the data to understand purchasing patterns, outliers, and seasonality.</p>
+
+<h3 class="sh">Top 20 best-selling products</h3>
+<div class="code-wrap">
+  <div class="code-header"><span class="code-lang">Python · EDA — Best sellers</span><button class="code-copy">Copy</button></div>
+  <pre class="acode"><code><span class="var">top_products</span> = (<span class="var">df</span>.<span class="fn">groupby</span>(<span class="str">'Description'</span>)[<span class="str">'Quantity'</span>]
+                  .<span class="fn">sum</span>()
+                  .<span class="fn">sort_values</span>(ascending=<span class="kw">False</span>)
+                  .<span class="fn">head</span>(<span class="num-c">20</span>))
+
+<span class="var">plt</span>.<span class="fn">figure</span>(figsize=(<span class="num-c">14</span>, <span class="num-c">6</span>))
+<span class="var">top_products</span>.<span class="fn">plot</span>(kind=<span class="str">'bar'</span>)
+<span class="var">plt</span>.<span class="fn">title</span>(<span class="str">'Top 20 Best Selling Products'</span>)
+<span class="var">plt</span>.<span class="fn">ylabel</span>(<span class="str">'Quantity Sold'</span>)
+<span class="var">plt</span>.<span class="fn">show</span>()</code></pre>
+</div>
+
+<div class="obs-box">
+  <div class="obs-label">Key findings</div>
+  <p><strong style="font-weight:500">PAPER CRAFT, LITTLE BIRDIE</strong> leads with 80,000+ units. <strong style="font-weight:500">MEDIUM CERAMIC TOP STORAGE JAR</strong> is second at ~78,000 units. Most products range between 20,000–40,000 units — indicating consistently high-volume inventory.</p>
+</div>
+
+<h3 class="sh">Monthly sales trend</h3>
+<div class="code-wrap">
+  <div class="code-header"><span class="code-lang">Python · EDA — Seasonality</span><button class="code-copy">Copy</button></div>
+  <pre class="acode"><code><span class="var">df</span>[<span class="str">'InvoiceDate'</span>] = <span class="var">pd</span>.<span class="fn">to_datetime</span>(<span class="var">df</span>[<span class="str">'InvoiceDate'</span>])
+<span class="var">df</span>[<span class="str">'Month'</span>] = <span class="var">df</span>[<span class="str">'InvoiceDate'</span>].dt.<span class="fn">month_name</span>()
+
+<span class="var">monthly</span> = <span class="var">df</span>.<span class="fn">groupby</span>(<span class="str">'Month'</span>)[<span class="str">'Quantity'</span>].<span class="fn">sum</span>()
+<span class="var">monthly</span> = <span class="var">monthly</span>.<span class="fn">reindex</span>([<span class="str">'January'</span>, <span class="str">'February'</span>, <span class="str">'March'</span>,
+    <span class="str">'April'</span>, <span class="str">'May'</span>, <span class="str">'June'</span>, <span class="str">'July'</span>, <span class="str">'August'</span>,
+    <span class="str">'September'</span>, <span class="str">'October'</span>, <span class="str">'November'</span>, <span class="str">'December'</span>])
+
+<span class="var">monthly</span>.<span class="fn">plot</span>(figsize=(<span class="num-c">12</span>, <span class="num-c">5</span>), marker=<span class="str">'o'</span>)
+<span class="var">plt</span>.<span class="fn">title</span>(<span class="str">'Monthly Sales Trend'</span>)
+<span class="var">plt</span>.<span class="fn">show</span>()</code></pre>
+</div>
+
+<div class="obs-box">
+  <div class="obs-label">Seasonality insight</div>
+  <p>Sales spike sharply in <strong style="font-weight:500">September–November</strong>, reaching their peak in November before a slight December decline — a clear holiday shopping effect. February records the lowest volume. This matters for Apriori: more transactions = more reliable frequent itemsets.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ─── SECTION 4 ─── -->
+<h2 class="ah"><span class="num">4</span>Building the Basket Matrix</h2>
+<p class="ap">The Apriori algorithm needs a binary matrix — one row per invoice, one column per product, with 1 meaning "purchased" and 0 meaning "not purchased".</p>
+
+<div class="code-wrap">
+  <div class="code-header"><span class="code-lang">Python · Step 4 — Basket transformation</span><button class="code-copy">Copy</button></div>
+  <pre class="acode"><code><span class="cm"># Filter to United Kingdom (highest transaction volume)</span>
+<span class="var">basket</span> = (<span class="var">df</span>[<span class="var">df</span>[<span class="str">'Country'</span>] == <span class="str">'United Kingdom'</span>]
+          .<span class="fn">groupby</span>([<span class="str">'InvoiceNo'</span>, <span class="str">'Description'</span>])[<span class="str">'Quantity'</span>]
+          .<span class="fn">sum</span>()
+          .<span class="fn">unstack</span>()
+          .<span class="fn">fillna</span>(<span class="num-c">0</span>))
+
+<span class="cm"># One-hot encode: 1 = purchased, 0 = not purchased</span>
+<span class="kw">def</span> <span class="fn">hot_encode</span>(x):
+    <span class="kw">return</span> <span class="num-c">0</span> <span class="kw">if</span> x <= <span class="num-c">0</span> <span class="kw">else</span> <span class="num-c">1</span>
+
+<span class="var">basket</span> = <span class="var">basket</span>.<span class="fn">applymap</span>(hot_encode)
+
+<span class="cm"># Convert to Boolean for memory efficiency</span>
+<span class="var">basket</span> = <span class="var">basket</span> > <span class="num-c">0</span>
+
+<span class="fn">print</span>(<span class="var">basket</span>.shape)  <span class="cm"># (rows=invoices, cols=unique products)</span></code></pre>
+</div>
+
+<div class="callout"><strong>Why United Kingdom?</strong> The UK accounts for the majority of transactions in the dataset. Using one region avoids mixing purchasing patterns from different countries, which would dilute the association signals.</div>
+
+<div class="section-divider"></div>
+
+<!-- ─── SECTION 5 ─── -->
+<h2 class="ah"><span class="num">5</span>Running the Apriori Algorithm</h2>
+<p class="ap">Due to memory constraints (the full basket requires ~11.8 GiB), we apply practical optimisations while preserving meaningful results.</p>
+
+<div class="code-wrap">
+  <div class="code-header"><span class="code-lang">Python · Step 5 — Apriori with memory optimisation</span><button class="code-copy">Copy</button></div>
+  <pre class="acode"><code><span class="kw">from</span> mlxtend.frequent_patterns <span class="kw">import</span> apriori, association_rules
+
+<span class="cm"># Run Apriori with low-memory mode and max pair size</span>
+<span class="var">frequent_items</span> = <span class="fn">apriori</span>(
+    <span class="var">basket</span>,
+    min_support=<span class="num-c">0.005</span>,     <span class="cm"># 0.5% of invoices</span>
+    use_colnames=<span class="kw">True</span>,
+    low_memory=<span class="kw">True</span>,       <span class="cm"># avoids MemoryError</span>
+    max_len=<span class="num-c">2</span>              <span class="cm"># pairs only (1 and 2-itemsets)</span>
+)
+
+<span class="cm"># Generate association rules with ≥ 50% confidence</span>
+<span class="var">rules</span> = <span class="fn">association_rules</span>(
+    <span class="var">frequent_items</span>,
+    metric=<span class="str">'confidence'</span>,
+    min_threshold=<span class="num-c">0.5</span>
+)
+
+<span class="fn">print</span>(<span class="str">"Frequent itemsets:"</span>, <span class="fn">len</span>(<span class="var">frequent_items</span>))
+<span class="fn">print</span>(<span class="str">"Association rules:"</span>, <span class="fn">len</span>(<span class="var">rules</span>))</code></pre>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ─── SECTION 6 ─── -->
+<h2 class="ah"><span class="num">6</span>The Three Metrics That Matter</h2>
+
+<div class="metric-row">
+  <div class="metric-card">
+    <div class="metric-val">Support</div>
+    <div class="metric-label">Frequency</div>
+    <div class="metric-def">How often the itemset appears across all transactions. Filters out rare combinations.</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-val">Confidence</div>
+    <div class="metric-label">Reliability</div>
+    <div class="metric-def">P(B|A) — if a customer buys A, how likely are they to buy B?</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-val">Lift</div>
+    <div class="metric-label">Strength</div>
+    <div class="metric-def">> 1 = positive link. How much stronger than random chance is this association?</div>
+  </div>
+</div>
+
+<div class="code-wrap">
+  <div class="code-header"><span class="code-lang">Python · Step 6 — Analyse and filter rules</span><button class="code-copy">Copy</button></div>
+  <pre class="acode"><code><span class="cm"># Top 20 rules sorted by Lift</span>
+<span class="var">top_rules</span> = <span class="var">rules</span>[[<span class="str">'antecedents'</span>, <span class="str">'consequents'</span>,
+                    <span class="str">'support'</span>, <span class="str">'confidence'</span>, <span class="str">'lift'</span>]]\
+            .<span class="fn">sort_values</span>(by=<span class="str">'lift'</span>, ascending=<span class="kw">False</span>)
+
+<span class="cm"># Convert frozensets to readable text</span>
+<span class="var">rules_display</span> = <span class="var">rules</span>.<span class="fn">copy</span>()
+<span class="var">rules_display</span>[<span class="str">'Antecedent'</span>] = <span class="var">rules_display</span>[<span class="str">'antecedents'</span>].<span class="fn">apply</span>(
+    <span class="kw">lambda</span> x: <span class="str">', '</span>.<span class="fn">join</span>(<span class="fn">list</span>(x)))
+<span class="var">rules_display</span>[<span class="str">'Consequent'</span>] = <span class="var">rules_display</span>[<span class="str">'consequents'</span>].<span class="fn">apply</span>(
+    <span class="kw">lambda</span> x: <span class="str">', '</span>.<span class="fn">join</span>(<span class="fn">list</span>(x)))
+
+<span class="cm"># Auto-interpret top 10 rules</span>
+<span class="var">top10</span> = <span class="var">rules_display</span>.<span class="fn">sort_values</span>(by=<span class="str">'lift'</span>, ascending=<span class="kw">False</span>).<span class="fn">head</span>(<span class="num-c">10</span>)
+<span class="kw">for</span> _, row <span class="kw">in</span> <span class="var">top10</span>.<span class="fn">iterrows</span>():
+    <span class="fn">print</span>(<span class="fn">f</span><span class="str">"If a customer buys '{row['Antecedent']}',"</span>)
+    <span class="fn">print</span>(<span class="fn">f</span><span class="str">"they are likely to buy '{row['Consequent']}'."</span>)
+    <span class="fn">print</span>(<span class="fn">f</span><span class="str">"Confidence: {row['confidence']:.2%} | Lift: {row['lift']:.2f}"</span>)
+    <span class="fn">print</span>(<span class="str">"-"</span> * <span class="num-c">60</span>)</code></pre>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ─── SECTION 7 ─── -->
+<h2 class="ah"><span class="num">7</span>Key Findings</h2>
+
+<div class="rule-card">
+  <div class="rule-text">🏆 Strongest rule: <strong>SPACEBOY BEAKER → DOLLY GIRL BEAKER</strong><br>Confidence: <strong>67.35%</strong> &nbsp;|&nbsp; Lift: <strong>86.90×</strong> — customers who buy the Spaceboy Beaker are 86.9 times more likely to also buy the Dolly Girl Beaker than a random customer.</div>
+</div>
+
+<div class="insights">
+  <div class="insight">
+    <div class="ins-title">Support distribution</div>
+    <div class="ins-body">Most rules have support below 2% — rare combinations but very reliable when they occur. A few high-support rules represent the most popular co-purchases.</div>
+  </div>
+  <div class="insight">
+    <div class="ins-title">Confidence range</div>
+    <div class="ins-body">50%–75% confidence for most rules — these associations are reliable predictors, making them ideal for product recommendation engines.</div>
+  </div>
+  <div class="insight">
+    <div class="ins-title">Seasonal context</div>
+    <div class="ins-body">November and December generate the most transactions, yielding the most reliable frequent itemsets — perfect for holiday campaign planning.</div>
+  </div>
+  <div class="insight">
+    <div class="ins-title">UK market focus</div>
+    <div class="ins-body">UK dominates with 90%+ of transactions. Association rules derived here are most applicable to UK shopping behaviour — other markets may differ.</div>
+  </div>
+</div>
+
+<div class="code-wrap">
+  <div class="code-header"><span class="code-lang">Python · Visualise top 20 rules by lift</span><button class="code-copy">Copy</button></div>
+  <pre class="acode"><code><span class="var">top20</span> = <span class="var">rules_display</span>.<span class="fn">sort_values</span>(by=<span class="str">'lift'</span>, ascending=<span class="kw">False</span>).<span class="fn">head</span>(<span class="num-c">20</span>)
+
+<span class="var">plt</span>.<span class="fn">figure</span>(figsize=(<span class="num-c">12</span>, <span class="num-c">8</span>))
+<span class="var">plt</span>.<span class="fn">barh</span>(<span class="var">top20</span>[<span class="str">'Antecedent'</span>] + <span class="str">' → '</span> + <span class="var">top20</span>[<span class="str">'Consequent'</span>],
+         <span class="var">top20</span>[<span class="str">'lift'</span>])
+<span class="var">plt</span>.<span class="fn">xlabel</span>(<span class="str">'Lift'</span>)
+<span class="var">plt</span>.<span class="fn">title</span>(<span class="str">'Top 20 Association Rules by Lift'</span>)
+<span class="var">plt</span>.<span class="fn">gca</span>().<span class="fn">invert_yaxis</span>()
+<span class="var">plt</span>.<span class="fn">tight_layout</span>()
+<span class="var">plt</span>.<span class="fn">show</span>()
+
+<span class="cm"># Save results to Excel</span>
+<span class="var">rules_display</span>[[<span class="str">'Antecedent'</span>, <span class="str">'Consequent'</span>,
+               <span class="str">'support'</span>, <span class="str">'confidence'</span>, <span class="str">'lift'</span>]].<span class="fn">to_excel</span>(
+    <span class="str">'Association_Rules.xlsx'</span>, index=<span class="kw">False</span>)</code></pre>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ─── SECTION 8 ─── -->
+<h2 class="ah"><span class="num">8</span>Business Applications</h2>
+<ul class="alist">
+  <li><strong style="font-weight:500">Product recommendations</strong> — display "Customers also bought…" when a Spaceboy Beaker is added to cart</li>
+  <li><strong style="font-weight:500">Cross-selling bundles</strong> — offer Dolly Girl + Spaceboy Beakers at a combined discount</li>
+  <li><strong style="font-weight:500">Store layout</strong> — place complementary products in adjacent aisles or shelf sections</li>
+  <li><strong style="font-weight:500">Inventory planning</strong> — ensure paired products are stocked together, especially for Q4</li>
+  <li><strong style="font-weight:500">Email marketing</strong> — target buyers of Product A with campaigns featuring Product B</li>
+  <li><strong style="font-weight:500">Seasonal campaigns</strong> — time promotions around November, when basket sizes are largest</li>
+</ul>
+
+<!-- CTA -->
+<div class="cta-footer">
+  <div class="cta-text">
+    <div class="cta-title">Want the full Jupyter Notebook?</div>
+    <div class="cta-sub">Drop a comment below and I'll share the complete code including all EDA charts and the Association Rules Excel export.</div>
+  </div>
+  <button class="cta-btn">Comment ↗</button>
+</div>
+
+<!-- Tags -->
+<div class="tags-row">
+  <span class="tag">#DataScience</span>
+  <span class="tag">#MachineLearning</span>
+  <span class="tag">#Python</span>
+  <span class="tag">#AprioriAlgorithm</span>
+  <span class="tag">#MarketBasketAnalysis</span>
+  <span class="tag">#DataMining</span>
+  <span class="tag">#AssociationRules</span>
+  <span class="tag">#mlxtend</span>
+  <span class="tag">#Pandas</span>
+  <span class="tag">#RetailAnalytics</span>
+  <span class="tag">#AIinBusiness</span>
+  <span class="tag">#Nigeria</span>
+</div>
+
+</div>
+</div>
+
+<script>
+document.querySelectorAll('.code-copy').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const code = btn.closest('.code-wrap').querySelector('code').innerText;
+    navigator.clipboard.writeText(code).then(() => {
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 2000);
+    });
+  });
+});
+</script>
